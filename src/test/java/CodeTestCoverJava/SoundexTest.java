@@ -38,24 +38,14 @@ public class SoundexTest {
 	
 	@Test
 	public void testBuildSoundexSingleCharacter() {
-		String name = "M";
-		Soundex soundex = new Soundex();
-		StringBuilder result = soundex.buildSoundex(name);
-		assertEquals("M000", result.toString());
+		assertEquals("M", Soundex.buildSoundex("M").toString());
 	}
 	
 	@Test
 	public void testBuildSoundexMultiCharacter() {
-		String nameOne = "Manikandan";
-		String nameTwo = "Bosch";
-		String nameThree = "CleanCode";
-		Soundex soundex = new Soundex();
-		StringBuilder resultOne = soundex.buildSoundex(nameOne);
-		StringBuilder resultTwo = soundex.buildSoundex(nameTwo);
-		StringBuilder resultThree = soundex.buildSoundex(nameThree);
-		assertEquals("M253", resultOne.toString());
-		assertEquals("B200", resultTwo.toString());
-		assertEquals("C452", resultThree.toString());
+		assertEquals("M253", Soundex.buildSoundex("Manikandan").toString());
+		assertEquals("B2", Soundex.buildSoundex("Bosch").toString());
+		assertEquals("C452", Soundex.buildSoundex("CleanCode").toString());
 	}
 	
 	@Test
