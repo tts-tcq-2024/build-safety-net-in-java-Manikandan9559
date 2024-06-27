@@ -10,6 +10,8 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import CodeTestCoverJava.Soundex;
+
 public class SoundexTest {
 
     @Test
