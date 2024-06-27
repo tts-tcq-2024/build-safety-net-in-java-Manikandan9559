@@ -18,7 +18,7 @@ public class Soundex {
         return soundex.toString();
     }
 	
-	private static StringBuilder buildSoundex(String name) {
+	public static StringBuilder buildSoundex(String name) {
 		StringBuilder soundex = new StringBuilder();
         soundex.append(Character.toUpperCase(name.charAt(0)));
         char prevCode = getSoundexCode(name.charAt(0));
@@ -32,15 +32,15 @@ public class Soundex {
         return soundex;
 	}
 	
-	private static boolean checkLength(int index, int nameLength, int soundexLength) {
+	public static boolean checkLength(int index, int nameLength, int soundexLength) {
 		return index < nameLength && soundexLength < 4;
 	}
 	
-	private static boolean doAppend(char code, char prevCode) {
+	public static boolean doAppend(char code, char prevCode) {
 		return code != '0' && code != prevCode;
 	}
 
-    private static char getSoundexCode(char c) {
+    public static char getSoundexCode(char c) {
     	Map<Character, Character> characterMap = buildSoundexMap();
     	if(characterMap.containsKey(Character.toUpperCase(c))) {
     		return characterMap.get(Character.toUpperCase(c));
@@ -48,7 +48,7 @@ public class Soundex {
     	return '0';
     }
     
-    private static Map<Character, Character> buildSoundexMap() {
+    public static Map<Character, Character> buildSoundexMap() {
     	Map<Character, Character> characterMap = new HashMap<>();
     	characterMap.putAll(populateSoundexMap(Arrays.asList('B', 'F', 'P', 'V'), '1'));
     	characterMap.putAll(populateSoundexMap(Arrays.asList('C', 'G', 'J', 'K', 'Q', 'S', 'X', 'Z'), '2'));
@@ -59,7 +59,7 @@ public class Soundex {
     	return characterMap;
     }
     
-    private static Map<Character, Character> populateSoundexMap(List<Character> nameCharList, char code) {
+    public static Map<Character, Character> populateSoundexMap(List<Character> nameCharList, char code) {
     	Map<Character, Character> characterMap = new HashMap<>();
     	if(isEmptyList(nameCharList)) {
     		for(Character nameChar: nameCharList) {
@@ -69,11 +69,11 @@ public class Soundex {
     	return characterMap;
     }
     
-    private static boolean isEmptyString(String input) {
+    public static boolean isEmptyString(String input) {
     	return input == null || input.isEmpty();
     }
     
-    private static boolean isEmptyList(List<Character> inputList) {
+    public static boolean isEmptyList(List<Character> inputList) {
     	return inputList != null && !inputList.isEmpty();
     }
 }
