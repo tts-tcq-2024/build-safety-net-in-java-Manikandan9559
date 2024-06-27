@@ -30,15 +30,15 @@ public class SoundexTest {
 	}
 	
 	@Test
-	public void testGenerateSoundexMultiCharacter() {
-		assertEquals("M253", Soundex.generateSoundex("Manikandan"));
-		assertEquals("B200", Soundex.generateSoundex("Bosch"));
-		assertEquals("C452", Soundex.generateSoundex("CleanCode"));
+	public void testBuildSoundexSingleCharacter() {
+		assertEquals("M000", Soundex.buildSoundex("M").toString());
 	}
 	
 	@Test
-	public void testBuildSoundexSingleCharacter() {
-		assertEquals(new StringBuilder("M000"), Soundex.buildSoundex("M"));
+	public void testBuildSoundexMultiCharacter() {
+		assertEquals("M253", Soundex.buildSoundex("Manikandan").toString());
+		assertEquals("B200", Soundex.buildSoundex("Bosch").toString());
+		assertEquals("C452", Soundex.buildSoundex("CleanCode").toString());
 	}
 	
 	@Test
