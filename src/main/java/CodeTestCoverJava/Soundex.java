@@ -16,18 +16,22 @@ public class Soundex {
 	private static StringBuilder buildSoundex(String name) {
 		StringBuilder soundex = new StringBuilder();
         soundex.append(Character.toUpperCase(name.charAt(0)));
-        char prevCode = getSoundexCodeNew(name.charAt(0));
+        char prevCode = getSoundexCode(name.charAt(0));
         for (int i = 1; i < name.length() && soundex.length() < 4; i++) {
-            char code = getSoundexCodeNew(name.charAt(i));
-            if (code != '0' && code != prevCode) {
+            char code = getSoundexCode(name.charAt(i));
+            if (isAppend(code, prevCode)) {
                 soundex.append(code);
                 prevCode = code;
             }
         }
         return soundex;
 	}
+	
+	private static boolean isAppend(char code, char prevCode) {
+		return code != '0' && code != prevCode;
+	}
 
-    private static char getSoundexCodeNew(char c) {
+    private static char getSoundexCode(char c) {
     	Map<Character, Character> characterMap = buildSoundexMap();
     	if(characterMap.containsKey(Character.toUpperCase(c))) {
     		return characterMap.get(Character.toUpperCase(c));
@@ -40,9 +44,9 @@ public class Soundex {
     	characterMap.putAll(populateSoundexMap(Arrays.asList('B', 'F', 'P', 'V'), '1'));
     	characterMap.putAll(populateSoundexMap(Arrays.asList('C', 'G', 'J', 'K', 'Q', 'S', 'X', 'Z'), '2'));
     	characterMap.putAll(populateSoundexMap(Arrays.asList('D', 'T'), '3'));
-    	characterMap.put('L', '4');
+    	characterMap.putAll(populateSoundexMap(Arrays.asList('L'), '4'));
     	characterMap.putAll(populateSoundexMap(Arrays.asList('M', 'N'), '5'));
-    	characterMap.put('R', '6');
+    	characterMap.putAll(populateSoundexMap(Arrays.asList('R'), '6'));
     	return characterMap;
     }
     
