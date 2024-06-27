@@ -1,9 +1,14 @@
 package CodeTestCoverJava;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Soundex {
 
     public static String generateSoundex(String name) {
-        if (StringUtils.isEmpty(name)) {
+        if (name == null || name.isEmpty()) {
             return "";
         }
         StringBuilder soundex = buildSoundex(name);
@@ -56,7 +61,7 @@ public class Soundex {
     
     private static Map<Character, Character> populateSoundexMap(List<Character> nameCharList, char code) {
     	Map<Character, Character> characterMap = new HashMap<>();
-    	if(!CollectionUtils.isEmpty(nameCharList)) {
+    	if(nameCharList != null && !nameCharList.isEmpty()) {
     		for(Character nameChar: nameCharList) {
     			characterMap.put(nameChar, code);
         	}
