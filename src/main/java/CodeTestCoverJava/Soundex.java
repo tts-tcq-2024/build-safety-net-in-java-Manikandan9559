@@ -8,7 +8,7 @@ import java.util.Map;
 public class Soundex {
 
     public static String generateSoundex(String name) {
-        if (name == null || name.isEmpty()) {
+        if (isEmptyString(name)) {
             return "";
         }
         StringBuilder soundex = buildSoundex(name);
@@ -61,11 +61,19 @@ public class Soundex {
     
     private static Map<Character, Character> populateSoundexMap(List<Character> nameCharList, char code) {
     	Map<Character, Character> characterMap = new HashMap<>();
-    	if(nameCharList != null && !nameCharList.isEmpty()) {
+    	if(isEmptyList(nameCharList)) {
     		for(Character nameChar: nameCharList) {
     			characterMap.put(nameChar, code);
         	}
     	}
     	return characterMap;
+    }
+    
+    private static boolean isEmptyString(String input) {
+    	return input == null || input.isEmpty();
+    }
+    
+    private static boolean isEmptyList(List<Character> inputList) {
+    	return inputList != null && !inputList.isEmpty();
     }
 }
