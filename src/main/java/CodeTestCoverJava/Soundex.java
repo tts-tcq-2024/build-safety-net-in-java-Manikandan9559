@@ -17,9 +17,9 @@ public class Soundex {
 		StringBuilder soundex = new StringBuilder();
         soundex.append(Character.toUpperCase(name.charAt(0)));
         char prevCode = getSoundexCode(name.charAt(0));
-        for (int i = 1; i < name.length() && soundex.length() < 4; i++) {
-            char code = getSoundexCode(name.charAt(i));
-            if (isAppend(code, prevCode)) {
+        for (int index = 1; checkLength(index, name.length(), soundex.length()); index++) {
+            char code = getSoundexCode(name.charAt(index));
+            if (doAppend(code, prevCode)) {
                 soundex.append(code);
                 prevCode = code;
             }
@@ -27,7 +27,11 @@ public class Soundex {
         return soundex;
 	}
 	
-	private static boolean isAppend(char code, char prevCode) {
+	private static boolean checkLength(int index, int nameLength, int soundexLength) {
+		return index < nameLength && soundexLength < 4;
+	}
+	
+	private static boolean doAppend(char code, char prevCode) {
 		return code != '0' && code != prevCode;
 	}
 
