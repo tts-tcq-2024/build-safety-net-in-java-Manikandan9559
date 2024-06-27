@@ -56,7 +56,11 @@ public class Soundex {
     
     private static Map<Character, Character> populateSoundexMap(List<Character> nameCharList, char code) {
     	Map<Character, Character> characterMap = new HashMap<>();
-    	nameCharList.stream().forEach(nameChar -> characterMap.put(nameChar, code));
+    	if(!CollectionUtils.isEmpty(nameCharList)) {
+    		for(Character nameChar: nameCharList) {
+    			characterMap.put(nameChar, code);
+        	}
+    	}
     	return characterMap;
     }
 }
