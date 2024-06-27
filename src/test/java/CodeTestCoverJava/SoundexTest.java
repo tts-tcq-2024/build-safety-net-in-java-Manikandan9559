@@ -14,7 +14,7 @@ import CodeTestCoverJava.Soundex;
 
 public class SoundexTest {
 
-    @Test
+    	@Test
 	public void testGenerateSoundexEmptyString() {
 		assertEquals("", Soundex.generateSoundex(""));
 	}
@@ -30,6 +30,13 @@ public class SoundexTest {
 	}
 	
 	@Test
+	public void testGenerateSoundexMultiCharacter() {
+		assertEquals("M253", Soundex.generateSoundex("Manikandan"));
+		assertEquals("B200", Soundex.generateSoundex("Bosch"));
+		assertEquals("C452", Soundex.generateSoundex("CleanCode"));
+	}
+	
+	@Test
 	public void testBuildSoundexSingleCharacter() {
 		assertEquals("M000", Soundex.buildSoundex("M").toString());
 	}
@@ -39,13 +46,6 @@ public class SoundexTest {
 		assertEquals("M253", Soundex.buildSoundex("Manikandan").toString());
 		assertEquals("B200", Soundex.buildSoundex("Bosch").toString());
 		assertEquals("C452", Soundex.buildSoundex("CleanCode").toString());
-	}
-	
-	@Test
-	public void testBuildSoundexMultiCharacter() {
-		assertEquals(new StringBuilder("M253"), Soundex.buildSoundex("Manikandan"));
-		assertEquals(new StringBuilder("B200"), Soundex.buildSoundex("Bosch"));
-		assertEquals(new StringBuilder("C452"), Soundex.buildSoundex("CleanCode"));
 	}
 	
 	@Test
